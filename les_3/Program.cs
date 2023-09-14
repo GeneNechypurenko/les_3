@@ -23,54 +23,130 @@ namespace les_3
             //    Console.WriteLine();
             //}
 
-            const int size = 10;
-            int[] arr = new int[size] { 7, 6, 5, 4, 3, 7, 6, 5, 4, 3 };
+            //    const int size = 10;
+            //    int[] arr = new int[size] { 7, 6, 5, 4, 3, 7, 6, 5, 4, 3 };
 
-            Console.Write("enter 1 number: ");
-            int first = int.Parse(Console.ReadLine());
+            //    Console.Write("enter 1 number: ");
+            //    int first = int.Parse(Console.ReadLine());
 
-            Console.Write("enter 2 number: ");
-            int second = int.Parse(Console.ReadLine());
+            //    Console.Write("enter 2 number: ");
+            //    int second = int.Parse(Console.ReadLine());
 
-            Console.Write("enter 3 number: ");
-            int third = int.Parse(Console.ReadLine());
+            //    Console.Write("enter 3 number: ");
+            //    int third = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("looking for coincidence...");
+            //    Console.WriteLine("looking for coincidence...");
 
-            int count = 0;
-            int n = 0;
+            //    int count = 0;
+            //    int n = 0;
 
-            while(n < size)
+            //    while(n < size)
+            //    {
+            //        if (arr[n] == first)
+            //        {
+            //            n++;
+
+            //            if (arr[n] == second)
+            //            {
+            //                n++;
+
+            //                if (arr[n] == third)
+            //                {
+            //                    count++;
+            //                }
+            //                else
+            //                {
+            //                    n++;
+            //                }
+            //            }
+            //            else
+            //            {
+            //                n++;
+            //            }
+            //        }
+            //        else
+            //        {
+            //            n++;
+            //        }
+            //    }
+
+            //    Console.WriteLine("coincidence count is " + count);
+
+            int size = 10;
+            int[] arrFirst = new int[size];
+            int[] arrSecond = new int[size];
+
+            Random rand = new Random();
+
+            for (int i = 0; i < size; i++)
             {
-                if (arr[n] == first)
+                arrFirst[i] = rand.Next(0, 9);
+            }
+
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write(arrFirst[i] + " ");
+            }
+            Console.WriteLine();
+
+
+            for (int i = 0; i < size; i++)
+            {
+                arrSecond[i] = rand.Next(0, 9);
+            }
+
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write(arrSecond[i] + " ");
+            }
+            Console.WriteLine();
+
+
+            int[] arrUnique = new int[size * 2];
+            int countUnique = 0;
+
+            for (int i = 0; i < size; i++)
+            {
+                bool isDuplicate = false;
+
+                for (int j = 0; j < countUnique; j++)
                 {
-                    n++;
-
-                    if (arr[n] == second)
+                    if (arrFirst[i] == arrUnique[j])
                     {
-                        n++;
-
-                        if (arr[n] == third)
-                        {
-                            count++;
-                        }
-                        else
-                        {
-                            n++;
-                        }
-                    }
-                    else
-                    {
-                        n++;
+                        isDuplicate = true;
+                        break;
                     }
                 }
-                else
+
+                if (!isDuplicate)
                 {
-                    n++;
+                    arrUnique[countUnique] = arrFirst[i];
+                    countUnique++;
+                }
+
+                isDuplicate = false;
+
+                for (int j = 0; j < size; j++)
+                {
+                    if (arrSecond[j] == arrUnique[countUnique])
+                    {
+                        isDuplicate = true;
+                        break;
+                    }
+                }
+
+                if (!isDuplicate)
+                {
+                    arrUnique[countUnique] = arrSecond[i];
+                    countUnique++;
                 }
             }
 
-            Console.WriteLine("coincidence count is " + count);
+            for (int i = 0; i < countUnique; i++)
+            {
+                Console.Write(arrUnique[i] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
